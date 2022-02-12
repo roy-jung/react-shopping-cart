@@ -1,10 +1,12 @@
 import { useGetOrderList } from '@/api'
 import EmptyPage from '@/modules/emptyPage'
+import LoadingIndicator from '@/modules/loadingIndicator'
 import OrderedDetails from './details'
 
 const OrderedList = () => {
-  const { data } = useGetOrderList()
+  const { data, isLoading } = useGetOrderList()
 
+  if (isLoading) return <LoadingIndicator isLoading={true} />
   if (!data)
     return (
       <EmptyPage

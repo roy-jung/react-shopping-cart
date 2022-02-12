@@ -1,16 +1,13 @@
-import { RefObject } from 'react'
 import { Link } from 'react-router-dom'
 
 const EmptyPage = ({
   description,
   backTo,
   buttonText,
-  fetchMoreEl,
 }: {
   description: string
   backTo?: string
   buttonText?: string
-  fetchMoreEl?: RefObject<HTMLDivElement>
 }) => (
   <div className="contents empty-page">
     <div>
@@ -21,7 +18,6 @@ const EmptyPage = ({
         </Link>
       )}
     </div>
-    <div className="fetch-more" ref={fetchMoreEl} />
   </div>
 )
 

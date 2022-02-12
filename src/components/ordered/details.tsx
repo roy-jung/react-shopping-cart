@@ -8,8 +8,8 @@ const OrderDetails = ({ id, orderDetails }: Order) => (
       <span>주문번호: {id}</span>
       <Link to={`/ordered/${id}`}>상세보기 &gt;</Link>
     </div>
-    {orderDetails.map(item => (
-      <OrderItem {...item} key={item.id} />
+    {orderDetails.map((item, i) => (
+      <OrderItem {...item} key={`${item.id}_${i}`} />
     ))}
   </div>
 )

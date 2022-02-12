@@ -15,6 +15,7 @@ const InfiniteList = <T extends unknown>({
   fetcher: (fetchMoreEl: RefObject<HTMLDivElement | null>) => {
     data: InfiniteData<T[]> | undefined
     isLoading: boolean
+    isFetchingNextPage: boolean
   }
   empty: {
     description: string
@@ -24,10 +25,23 @@ const InfiniteList = <T extends unknown>({
   [key: string]: any
 }) => {
   const fetchMoreEl = useRef<HTMLDivElement | null>(null)
-  const { data, isLoading } = fetcher(fetchMoreEl)
+  const { data, isLoading, isFetchingNextPage } = fetcher(fetchMoreEl)
+  const fetchMore = <div className="fetch-more" ref={fetchMoreEl} />
 
-  if (!isLoading && !data)
-    return <EmptyPage {...empty} fetchMoreEl={fetchMoreEl} />
+  if (isLoading)
+    return (
+      <>
+        <LoadingIndicator isLoading={isLoading} />
+        {fetchMore}
+      </>
+    )
+  if (!data)
+    return (
+      <>
+        <EmptyPage {...empty} />
+        {fetchMore}
+      </>
+    )
 
   return (
     <>
@@ -38,8 +52,8 @@ const InfiniteList = <T extends unknown>({
           )),
         )}
       </div>
-      <div className="fetch-more" ref={fetchMoreEl} />
-      <LoadingIndicator isLoading={isLoading} />
+      {fetchMore}
+      <LoadingIndicator isLoading={isFetchingNextPage} />
     </>
   )
 }

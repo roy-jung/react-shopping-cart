@@ -4,7 +4,8 @@ import useInfiniteScroll from './useInfiniteScroll'
 
 const useProductList = (fetchMoreEl: RefObject<HTMLDivElement | null>) => {
   const { intersecting } = useInfiniteScroll(fetchMoreEl)
-  const { data, fetchNextPage, hasNextPage, isLoading } = useGetProductList()
+  const { data, fetchNextPage, hasNextPage, isLoading, isFetchingNextPage } =
+    useGetProductList()
 
   useEffect(() => {
     if (intersecting && hasNextPage) fetchNextPage()
@@ -16,7 +17,7 @@ const useProductList = (fetchMoreEl: RefObject<HTMLDivElement | null>) => {
     }
   }, [])
 
-  return { data, isLoading }
+  return { data, isLoading, isFetchingNextPage }
 }
 
 export default useProductList

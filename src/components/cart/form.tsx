@@ -3,9 +3,12 @@ import { useGetCarts } from '@/api'
 import { localeNumber, getTotalQuantity, getTotalPrice } from '@/utils'
 import EmptyPage from '@/modules/emptyPage'
 import CartFormItem from './formItem'
+import LoadingIndicator from '@/modules/loadingIndicator'
 
 const CartForm = () => {
-  const { data } = useGetCarts()
+  const { data, isLoading } = useGetCarts()
+
+  if (isLoading) return <LoadingIndicator isLoading={true} />
 
   if (!data)
     return (
