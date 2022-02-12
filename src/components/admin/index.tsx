@@ -12,10 +12,14 @@ const Admin = () => {
   const addItem = (data: ProductRequest) =>
     onAdd(data, {
       onSuccess: newProduct => {
-        queryClient.setQueryData<GetProductResponse[]>(
+        queryClient.setQueryData(
           QueryKeys.products,
-          old => {
-            return [newProduct, ...(old || [])]
+          ({ pageParams, pages }) => {
+            pages[0].unshift(newProduct)
+            return {
+              pageParams,
+              pages,
+            }
           },
         )
       },
@@ -24,11 +28,15 @@ const Admin = () => {
   const deleteItem = (id: string) =>
     onDelete(id, {
       onSuccess: () => {
-        queryClient.setQueryData<GetProductResponse[]>(
+        queryClient.setQueryData(
           QueryKeys.products,
-          data => {
-            return data?.filter(d => d.id !== id) || []
-          },
+          ({ pageParams, pages }) => ({
+            pageParams,
+            pages: pages.map(
+              (data: GetProductResponse[]) =>
+                data?.filter(d => d.id !== id) || [],
+            ),
+          }),
         )
       },
     })
