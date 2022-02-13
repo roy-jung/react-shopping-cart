@@ -9,7 +9,7 @@ const OrderDetails = ({ id, orderDetails }: Order) => (
       <Link to={`/ordered/${id}`}>상세보기 &gt;</Link>
     </div>
     {orderDetails.map((item, i) => (
-      <OrderItem {...item} key={`${item.id}_${i}`} />
+      <OrderItem {...item} key={`${item.productId}_${i}`} />
     ))}
   </div>
 )

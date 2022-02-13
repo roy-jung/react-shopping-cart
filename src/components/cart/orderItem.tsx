@@ -1,6 +1,9 @@
 import { OrderDetail } from '@/dto'
 
-const OrderConfirmItem = ({ imageUrl, name, quantity }: OrderDetail) => {
+const OrderConfirmItem = ({
+  product: { imageUrl, name },
+  quantity,
+}: OrderDetail) => {
   return (
     <div className="order-container">
       <div className="flex gap-15 mt-10">

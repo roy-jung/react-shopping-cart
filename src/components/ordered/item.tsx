@@ -1,6 +1,9 @@
 import { OrderDetail } from '@/dto'
 
-const OrderItem = ({ imageUrl, name, price, quantity }: OrderDetail) => (
+const OrderItem = ({
+  product: { imageUrl, name, price },
+  quantity,
+}: OrderDetail) => (
   <div className="order-list-item">
     <div className="flex gap-15 mt-10">
       <img className="w-144 h-144" src={imageUrl} alt={name} />

@@ -7,6 +7,10 @@ test('useCartModal', () => {
     price: 1000,
     name: '테스트',
     imageUrl: 'http://abc.com/1.jpg',
+    createdAt: {
+      seconds: 0,
+      nanoseconds: 0,
+    },
   }
   const { result } = renderHook(() => useCartModal())
   const { showModal, closeModal } = result.current
