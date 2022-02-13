@@ -1,8 +1,8 @@
 import { useRef, useState, useEffect, RefObject } from 'react'
 
 const useInfiniteScroll = (targetEl: RefObject<HTMLDivElement | null>) => {
-  const observerRef = useRef<any>(null)
   const [intersecting, setIntersecting] = useState(false)
+  const observerRef = useRef<any>(null)
   const initiating = useRef(true)
 
   const getObserver = () => {
@@ -30,7 +30,9 @@ const useInfiniteScroll = (targetEl: RefObject<HTMLDivElement | null>) => {
   }, [targetEl?.current])
 
   useEffect(() => {
-    return destroyObserver
+    return () => {
+      destroyObserver()
+    }
   }, [])
 
   return { intersecting }

@@ -1,4 +1,4 @@
-import { GetProductResponse, ProductRequest } from '@/dto'
+import { Product, ProductRequest } from '@/dto'
 import useProductList from '@/hooks/useProductList'
 import { queryClient, QueryKeys, useAddProduct, useDeleteProduct } from '@/api'
 import InfiniteList from '@/modules/infiniteList'
@@ -33,8 +33,7 @@ const Admin = () => {
           ({ pageParams, pages }) => ({
             pageParams,
             pages: pages.map(
-              (data: GetProductResponse[]) =>
-                data?.filter(d => d.id !== id) || [],
+              (data: Product[]) => data?.filter(d => d.id !== id) || [],
             ),
           }),
         )

@@ -1,9 +1,9 @@
-import { GetProductResponse, GetCartResponse, GetOrderResponse } from '@/dto'
+import { Product, GetCartResponse, GetOrderResponse } from '@/dto'
 import { useInfiniteQuery, useQuery } from 'react-query'
 import { fetcher, QueryKeys } from './client'
 
 export const useGetProductList = () =>
-  useInfiniteQuery<GetProductResponse[]>(
+  useInfiniteQuery<Product[]>(
     QueryKeys.products,
     ({ pageParam = 1, signal }) =>
       fetcher({
@@ -21,7 +21,7 @@ export const useGetProductList = () =>
   )
 
 export const useGetProduct = (id: string) =>
-  useQuery<GetProductResponse>([QueryKeys.product, id], () =>
+  useQuery<Product>([QueryKeys.product, id], () =>
     fetcher({
       method: 'GET',
       path: `/products/${id}`,

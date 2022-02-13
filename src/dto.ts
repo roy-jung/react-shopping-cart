@@ -1,28 +1,27 @@
-/*
-  /products
-*/
+type Timestamp = {
+  seconds: number
+  nanoseconds: number
+}
 
 export interface Product {
   id: string
   price: number
   name: string
   imageUrl: string
+  createdAt: Timestamp
 }
 
-export interface GetProductResponse extends Product {}
-
-export type ProductRequest = Omit<Product, 'id'>
+export type ProductRequest = Omit<Product, 'id' | 'createdAt'>
 
 export interface PostCartRequest {
-  product: Product
+  productId: string
 }
 
-/*
-  /orders
-*/
-
-export interface OrderDetail extends Product {
+export interface OrderDetail {
+  productId: string
+  product: Product
   quantity: number
+  updatedAt: Timestamp
 }
 
 export interface Order {
@@ -35,8 +34,4 @@ export interface GetOrderResponse extends Order {}
 export interface PostOrderResponse {
   orderDetails: OrderDetail[]
 }
-
-/*
-  /carts
-*/
 export interface GetCartResponse extends OrderDetail {}

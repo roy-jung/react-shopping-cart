@@ -1,11 +1,11 @@
-import { GetProductResponse } from '@/dto'
+import { Product } from '@/dto'
 import { localeNumber } from '@/utils'
 
 const AdminProductItem = ({
   item: { id, price, name, imageUrl },
   deleteItem,
 }: {
-  item: GetProductResponse
+  item: Product
   deleteItem: (id: string) => void
 }) => {
   return (

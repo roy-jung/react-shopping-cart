@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom'
-import { GetCartResponse, GetProductResponse } from '@/dto'
+import { GetCartResponse, Product } from '@/dto'
 import { queryClient, QueryKeys, useAddCart, useGetCarts } from '@/api'
 import ModalPortal from '@/modules/modalPortal'
 import ProductItem from './item'
@@ -9,7 +9,7 @@ const CartModal = ({
   item,
 }: {
   closeModal: () => void
-  item: GetProductResponse | null
+  item: Product | null
 }) => {
   const { mutate: onAdd } = useAddCart()
   const navigate = useNavigate()
@@ -22,7 +22,9 @@ const CartModal = ({
           queryClient.setQueryData<GetCartResponse[]>(QueryKeys.cart, old => {
             const newList = [...(old || [])]
             const prevIndex =
-              newList?.findIndex(item => item.id === newItem.id) || -1
+              newList?.findIndex(
+                item => item.productId === newItem.productId,
+              ) || -1
             if (prevIndex > -1) {
               newList.splice(prevIndex, 1, newItem)
               return newList
@@ -36,10 +38,7 @@ const CartModal = ({
     }
   }
 
-  if (!item) {
-    closeModal()
-    return null
-  }
+  if (!item) return null
 
   return (
     <ModalPortal>
@@ -54,7 +53,11 @@ const CartModal = ({
           <p>최신 장바구니 목록</p>
           <div className="flex">
             {data?.slice(0, 3).map(item => (
-              <ProductItem item={item} hideButton key={item.id} />
+              <ProductItem
+                item={item.product}
+                hideButton
+                key={item.productId}
+              />
             ))}
           </div>
         </div>

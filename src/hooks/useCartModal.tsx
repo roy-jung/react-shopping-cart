@@ -1,10 +1,10 @@
 import { useState } from 'react'
 import CartModal from '@/components/product/cartModal'
-import { GetProductResponse } from '@/dto'
+import { Product } from '@/dto'
 
 const useCartModal = () => {
-  const [modalItem, setModalItem] = useState<GetProductResponse | null>(null)
-  const showModal = (item: GetProductResponse) => {
+  const [modalItem, setModalItem] = useState<Product | null>(null)
+  const showModal = (item: Product) => {
     setModalItem(item)
   }
   const closeModal = () => {

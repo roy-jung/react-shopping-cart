@@ -1,6 +1,6 @@
 import { SyntheticEvent } from 'react'
 import { Link } from 'react-router-dom'
-import { GetProductResponse } from '@/dto'
+import { Product } from '@/dto'
 import { localeNumber } from '@/utils'
 
 const ProductItem = ({
@@ -9,8 +9,8 @@ const ProductItem = ({
   showModal,
   hideButton = false,
 }: {
-  item: GetProductResponse
-  showModal?: (item: GetProductResponse) => void
+  item: Product
+  showModal?: (item: Product) => void
   hideButton: boolean
 }) => {
   const addToCart = (e: SyntheticEvent) => {

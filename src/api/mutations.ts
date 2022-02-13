@@ -1,8 +1,8 @@
 import {
-  GetProductResponse,
   ProductRequest,
   GetCartResponse,
   GetOrderResponse,
+  Product,
 } from '@/dto'
 import { MutationFunction, UseMutationOptions, useMutation } from 'react-query'
 import { fetcher } from './client'
@@ -14,11 +14,7 @@ const mutator =
   (options?: UseMutationOptions<TData, TError, TVariables, TContext>) =>
     useMutation<TData, TError, TVariables, TContext>(mutationFn, options)
 
-export const useAddProduct = mutator<
-  GetProductResponse,
-  unknown,
-  ProductRequest
->(body =>
+export const useAddProduct = mutator<Product, unknown, ProductRequest>(body =>
   fetcher({
     method: 'POST',
     path: '/products',

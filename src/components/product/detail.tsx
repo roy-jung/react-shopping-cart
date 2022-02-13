@@ -1,4 +1,4 @@
-import { GetProductResponse } from '@/dto'
+import { Product } from '@/dto'
 import useCartModal from '@/hooks/useCartModal'
 import { localeNumber } from '@/utils'
 
@@ -6,7 +6,7 @@ const ProductDetail = ({
   item,
   item: { name, imageUrl, price },
 }: {
-  item: GetProductResponse
+  item: Product
 }) => {
   const { modalComponent, showModal } = useCartModal()
 

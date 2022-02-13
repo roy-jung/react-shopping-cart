@@ -1,4 +1,5 @@
 import { QueryClient } from 'react-query'
+
 export type METHOD = 'GET' | 'POST' | 'PUT' | 'DELETE'
 
 export const enum QueryKeys {
@@ -12,6 +13,7 @@ export const enum QueryKeys {
 const DefaultFetchOption = {
   headers: {
     'Content-Type': 'application/json',
+    'Access-Control-Allow-Origin': 'https://roy-cart.herokuapp.com',
   },
 }
 export const BASE_URL = 'https://roy-cart.herokuapp.com'

@@ -1,7 +1,11 @@
 import { OrderDetail } from '@/dto'
 import { localeNumber } from '@/utils'
 
-const CartFormItem = ({ imageUrl, name, price, quantity }: OrderDetail) => (
+const CartFormItem = ({
+  product: { imageUrl, name, price },
+  productId,
+  quantity,
+}: OrderDetail) => (
   <div className="cart-container">
     <div className="flex gap-15 mt-10">
       <input className="checkbox" name="checkbox" type="checkbox" />
