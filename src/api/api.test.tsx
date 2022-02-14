@@ -4,7 +4,7 @@ import fetch from 'cross-fetch'
 import { QueryClient, QueryClientProvider, setLogger } from 'react-query'
 import { renderHook } from '@testing-library/react-hooks'
 import * as queries from './queries'
-import { BASE_URL } from './client'
+import { SERVER_URL } from './client'
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -40,12 +40,12 @@ test('useGetProductList - 최초fetch시, 두번째fetch시 데이터 구조 테
       imageUrl: 'https://abcd.com',
     },
   ]
-  const expectation = nock(BASE_URL)
+  const expectation = nock(SERVER_URL)
     .persist()
     .get('/products')
     .query(true)
     .reply(200, uri => {
-      const url = new URL(`${BASE_URL}${uri}`)
+      const url = new URL(`${SERVER_URL}${uri}`)
       const { page } = Object.fromEntries(url.searchParams)
       return getProductListMockResponse(parseInt(page))
     })

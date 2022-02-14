@@ -10,13 +10,13 @@ export const enum QueryKeys {
   cart = 'cart',
 }
 
+export const SERVER_URL = import.meta.env.VITE_SERVER_URL as string
 const DefaultFetchOption = {
   headers: {
     'Content-Type': 'application/json',
-    'Access-Control-Allow-Origin': 'https://roy-cart.herokuapp.com',
+    'Access-Control-Allow-Origin': SERVER_URL,
   },
 }
-export const BASE_URL = 'https://roy-cart.herokuapp.com'
 
 type FetcherArguments = {
   method: METHOD
@@ -42,7 +42,7 @@ export const fetcher = async ({
   signal,
 }: FetcherArguments) => {
   try {
-    let url = `${BASE_URL}${path}`
+    let url = `${SERVER_URL}${path}`
     const fetchOption: RequestInit = {
       method,
       signal,
