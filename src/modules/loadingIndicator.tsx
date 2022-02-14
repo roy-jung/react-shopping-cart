@@ -1,6 +1,14 @@
-const LoadingIndicator = ({ isLoading }: { isLoading: boolean }) =>
+import classNames from 'classnames'
+
+const LoadingIndicator = ({
+  isLoading,
+  size = 'big',
+}: {
+  isLoading: boolean
+  size?: 'big' | 'small'
+}) =>
   isLoading ? (
-    <div className="loading-indicator">
+    <div className={classNames('loading-indicator', size)}>
       <svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
         <title>spinner</title>
         <path

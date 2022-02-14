@@ -9,6 +9,15 @@
   animation: rotate ease-in-out 2.5s infinite forwards;
   vertical-align: middle;
 }
+.loading-indicator.big {
+  flex-grow: 1;
+  align-self: center;
+  flex-direction: column;
+}
+.loading-indicator.big svg {
+  width: 70px;
+  height: 70px;
+}
 
 @keyframes rotate {
   0% {

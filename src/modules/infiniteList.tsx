@@ -31,7 +31,7 @@ const InfiniteList = <T extends unknown>({
   if (isLoading)
     return (
       <>
-        <LoadingIndicator isLoading={isLoading} />
+        <LoadingIndicator isLoading={true} />
         {fetchMore}
       </>
     )
@@ -53,7 +53,7 @@ const InfiniteList = <T extends unknown>({
         )}
       </div>
       {fetchMore}
-      <LoadingIndicator isLoading={isFetchingNextPage} />
+      <LoadingIndicator isLoading={isFetchingNextPage} size="small" />
     </>
   )
 }

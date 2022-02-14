@@ -4,7 +4,7 @@ const Gnb = () => (
   <header>
     <nav className="nav flex justify-around">
       <NavLink className="flex-center" to="/">
-        <h1 className="nav-title">CLEAN CODE SHOP</h1>
+        <h1 className="nav-title" title="CLEAN CODE SHOP" />
       </NavLink>
       <div className="flex gap-15">
         <NavLink className="nav-button" to="/cart">
