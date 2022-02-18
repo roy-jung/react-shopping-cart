@@ -1,13 +1,13 @@
 import Header from '@/modules/header'
-import OrderedList from '@/components/ordered'
+import OrdersList from '@/components/orders'
 
-const OrderedListPage = () => {
+const OrdersListPage = () => {
   return (
     <section className="page">
       <Header title="주문 목록" />
-      <OrderedList />
+      <OrdersList />
     </section>
   )
 }
 
-export default OrderedListPage
+export default OrdersListPage
