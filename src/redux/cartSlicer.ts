@@ -5,10 +5,6 @@ import { WritableDraft } from 'immer/dist/internal'
 import { InfiniteData } from 'react-query'
 
 export type CartModalType = 'delete' | 'confirm' | null
-export type CartModalInfo = {
-  type: CartModalType
-  items?: OrderDetail[] | null
-}
 
 type CartState = {
   checkedIds: string[]
